@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.personal.spcxueping.mapper.PingjiaMapper">
+  <resultMap id="BaseResultMap" type="com.personal.spcxueping.dao.Pingjia">
+    <id column="userid" jdbcType="VARCHAR" property="userid" />
+    <id column="cno" jdbcType="CHAR" property="cno" />
+    <result column="audit" jdbcType="BIT" property="audit" />
+    <result column="reltime" jdbcType="TIMESTAMP" property="reltime" />
+    <result column="text" jdbcType="VARCHAR" property="text" />
+    <result column="hidename" jdbcType="BIT" property="hidename" />
+    <result column="aid" jdbcType="VARCHAR" property="aid" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userid, cno, audit, reltime, text, hidename, aid, createtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.personal.spcxueping.dao.PingjiaKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pingjia
+    where userid = #{userid,jdbcType=VARCHAR}
+      and cno = #{cno,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.personal.spcxueping.dao.PingjiaKey">
+    delete from pingjia
+    where userid = #{userid,jdbcType=VARCHAR}
+      and cno = #{cno,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.personal.spcxueping.dao.Pingjia">
+    insert into pingjia (userid, cno, audit, 
+      reltime, text, hidename, 
+      aid, createtime)
+    values (#{userid,jdbcType=VARCHAR}, #{cno,jdbcType=CHAR}, #{audit,jdbcType=BIT}, 
+      #{reltime,jdbcType=TIMESTAMP}, #{text,jdbcType=VARCHAR}, #{hidename,jdbcType=BIT}, 
+      #{aid,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.personal.spcxueping.dao.Pingjia">
+    insert into pingjia
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="cno != null">
+        cno,
+      </if>
+      <if test="audit != null">
+        audit,
+      </if>
+      <if test="reltime != null">
+        reltime,
+      </if>
+      <if test="text != null">
+        text,
+      </if>
+      <if test="hidename != null">
+        hidename,
+      </if>
+      <if test="aid != null">
+        aid,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="cno != null">
+        #{cno,jdbcType=CHAR},
+      </if>
+      <if test="audit != null">
+        #{audit,jdbcType=BIT},
+      </if>
+      <if test="reltime != null">
+        #{reltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="text != null">
+        #{text,jdbcType=VARCHAR},
+      </if>
+      <if test="hidename != null">
+        #{hidename,jdbcType=BIT},
+      </if>
+      <if test="aid != null">
+        #{aid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.personal.spcxueping.dao.Pingjia">
+    update pingjia
+    <set>
+      <if test="audit != null">
+        audit = #{audit,jdbcType=BIT},
+      </if>
+      <if test="reltime != null">
+        reltime = #{reltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="text != null">
+        text = #{text,jdbcType=VARCHAR},
+      </if>
+      <if test="hidename != null">
+        hidename = #{hidename,jdbcType=BIT},
+      </if>
+      <if test="aid != null">
+        aid = #{aid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=VARCHAR}
+      and cno = #{cno,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.personal.spcxueping.dao.Pingjia">
+    update pingjia
+    set audit = #{audit,jdbcType=BIT},
+      reltime = #{reltime,jdbcType=TIMESTAMP},
+      text = #{text,jdbcType=VARCHAR},
+      hidename = #{hidename,jdbcType=BIT},
+      aid = #{aid,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where userid = #{userid,jdbcType=VARCHAR}
+      and cno = #{cno,jdbcType=CHAR}
+  </update>
+</mapper>
