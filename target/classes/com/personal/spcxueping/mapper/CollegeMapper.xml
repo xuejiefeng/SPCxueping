@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.personal.spcxueping.mapper.CollegeMapper">
+  <resultMap id="BaseResultMap" type="com.personal.spcxueping.dao.College">
+    <id column="coid" jdbcType="CHAR" property="coid" />
+    <result column="coname" jdbcType="VARCHAR" property="coname" />
+    <result column="aid" jdbcType="VARCHAR" property="aid" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    coid, coname, aid, createtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from college
+    where coid = #{coid,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from college
+    where coid = #{coid,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.personal.spcxueping.dao.College">
+    insert into college (coid, coname, aid, 
+      createtime)
+    values (#{coid,jdbcType=CHAR}, #{coname,jdbcType=VARCHAR}, #{aid,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.personal.spcxueping.dao.College">
+    insert into college
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="coid != null">
+        coid,
+      </if>
+      <if test="coname != null">
+        coname,
+      </if>
+      <if test="aid != null">
+        aid,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="coid != null">
+        #{coid,jdbcType=CHAR},
+      </if>
+      <if test="coname != null">
+        #{coname,jdbcType=VARCHAR},
+      </if>
+      <if test="aid != null">
+        #{aid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.personal.spcxueping.dao.College">
+    update college
+    <set>
+      <if test="coname != null">
+        coname = #{coname,jdbcType=VARCHAR},
+      </if>
+      <if test="aid != null">
+        aid = #{aid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where coid = #{coid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.personal.spcxueping.dao.College">
+    update college
+    set coname = #{coname,jdbcType=VARCHAR},
+      aid = #{aid,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where coid = #{coid,jdbcType=CHAR}
+  </update>
+</mapper>

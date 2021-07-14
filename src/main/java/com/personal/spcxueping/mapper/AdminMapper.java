@@ -1,7 +1,10 @@
 package com.personal.spcxueping.mapper;
 
 import com.personal.spcxueping.dao.Admin;
+import org.apache.ibatis.annotations.Mapper;
 
+
+@Mapper
 public interface AdminMapper {
     int deleteByPrimaryKey(String userid);
 

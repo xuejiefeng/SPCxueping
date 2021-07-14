@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.personal.spcxueping.mapper.CourseMapper">
+  <resultMap id="BaseResultMap" type="com.personal.spcxueping.dao.Course">
+    <id column="cno" jdbcType="CHAR" property="cno" />
+    <result column="cname" jdbcType="VARCHAR" property="cname" />
+    <result column="coid" jdbcType="CHAR" property="coid" />
+    <result column="credit" jdbcType="DECIMAL" property="credit" />
+    <result column="aid" jdbcType="VARCHAR" property="aid" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cno, cname, coid, credit, aid, createtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from course
+    where cno = #{cno,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from course
+    where cno = #{cno,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.personal.spcxueping.dao.Course">
+    insert into course (cno, cname, coid, credit, 
+      aid, createtime)
+    values (#{cno,jdbcType=CHAR}, #{cname,jdbcType=VARCHAR}, #{coid,jdbcType=CHAR}, #{credit,jdbcType=DECIMAL}, 
+      #{aid,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.personal.spcxueping.dao.Course">
+    insert into course
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cno != null">
+        cno,
+      </if>
+      <if test="cname != null">
+        cname,
+      </if>
+      <if test="coid != null">
+        coid,
+      </if>
+      <if test="credit != null">
+        credit,
+      </if>
+      <if test="aid != null">
+        aid,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cno != null">
+        #{cno,jdbcType=CHAR},
+      </if>
+      <if test="cname != null">
+        #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="coid != null">
+        #{coid,jdbcType=CHAR},
+      </if>
+      <if test="credit != null">
+        #{credit,jdbcType=DECIMAL},
+      </if>
+      <if test="aid != null">
+        #{aid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.personal.spcxueping.dao.Course">
+    update course
+    <set>
+      <if test="cname != null">
+        cname = #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="coid != null">
+        coid = #{coid,jdbcType=CHAR},
+      </if>
+      <if test="credit != null">
+        credit = #{credit,jdbcType=DECIMAL},
+      </if>
+      <if test="aid != null">
+        aid = #{aid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where cno = #{cno,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.personal.spcxueping.dao.Course">
+    update course
+    set cname = #{cname,jdbcType=VARCHAR},
+      coid = #{coid,jdbcType=CHAR},
+      credit = #{credit,jdbcType=DECIMAL},
+      aid = #{aid,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where cno = #{cno,jdbcType=CHAR}
+  </update>
+</mapper>
