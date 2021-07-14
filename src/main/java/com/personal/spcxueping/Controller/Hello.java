@@ -13,6 +13,7 @@ import java.util.Map;
 public class Hello {
     @Autowired
     JdbcTemplate jdbcTemplate;
+
     @GetMapping("Hello")
     public String sayHello(){
         String sql="SELECT * FROM plat_user";

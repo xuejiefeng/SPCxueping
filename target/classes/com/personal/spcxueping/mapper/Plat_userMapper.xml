@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.personal.spcxueping.mapper.Plat_userMapper">
+  <resultMap id="BaseResultMap" type="com.personal.spcxueping.dao.Plat_user">
+    <id column="userid" jdbcType="VARCHAR" property="userid" />
+    <result column="userpswd" jdbcType="VARCHAR" property="userpswd" />
+    <result column="mibaoq" jdbcType="VARCHAR" property="mibaoq" />
+    <result column="mibaoa" jdbcType="VARCHAR" property="mibaoa" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="cert" jdbcType="BIT" property="cert" />
+    <result column="ban" jdbcType="BIT" property="ban" />
+    <result column="netid" jdbcType="VARCHAR" property="netid" />
+    <result column="aid" jdbcType="VARCHAR" property="aid" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userid, userpswd, mibaoq, mibaoa, nickname, cert, ban, netid, aid, createtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from plat_user
+    where userid = #{userid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from plat_user
+    where userid = #{userid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.personal.spcxueping.dao.Plat_user">
+    insert into plat_user (userid, userpswd, mibaoq, 
+      mibaoa, nickname, cert, 
+      ban, netid, aid, createtime
+      )
+    values (#{userid,jdbcType=VARCHAR}, #{userpswd,jdbcType=VARCHAR}, #{mibaoq,jdbcType=VARCHAR}, 
+      #{mibaoa,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{cert,jdbcType=BIT}, 
+      #{ban,jdbcType=BIT}, #{netid,jdbcType=VARCHAR}, #{aid,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.personal.spcxueping.dao.Plat_user">
+    insert into plat_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="userpswd != null">
+        userpswd,
+      </if>
+      <if test="mibaoq != null">
+        mibaoq,
+      </if>
+      <if test="mibaoa != null">
+        mibaoa,
+      </if>
+      <if test="nickname != null">
+        nickname,
+      </if>
+      <if test="cert != null">
+        cert,
+      </if>
+      <if test="ban != null">
+        ban,
+      </if>
+      <if test="netid != null">
+        netid,
+      </if>
+      <if test="aid != null">
+        aid,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="userpswd != null">
+        #{userpswd,jdbcType=VARCHAR},
+      </if>
+      <if test="mibaoq != null">
+        #{mibaoq,jdbcType=VARCHAR},
+      </if>
+      <if test="mibaoa != null">
+        #{mibaoa,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="cert != null">
+        #{cert,jdbcType=BIT},
+      </if>
+      <if test="ban != null">
+        #{ban,jdbcType=BIT},
+      </if>
+      <if test="netid != null">
+        #{netid,jdbcType=VARCHAR},
+      </if>
+      <if test="aid != null">
+        #{aid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.personal.spcxueping.dao.Plat_user">
+    update plat_user
+    <set>
+      <if test="userpswd != null">
+        userpswd = #{userpswd,jdbcType=VARCHAR},
+      </if>
+      <if test="mibaoq != null">
+        mibaoq = #{mibaoq,jdbcType=VARCHAR},
+      </if>
+      <if test="mibaoa != null">
+        mibaoa = #{mibaoa,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="cert != null">
+        cert = #{cert,jdbcType=BIT},
+      </if>
+      <if test="ban != null">
+        ban = #{ban,jdbcType=BIT},
+      </if>
+      <if test="netid != null">
+        netid = #{netid,jdbcType=VARCHAR},
+      </if>
+      <if test="aid != null">
+        aid = #{aid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.personal.spcxueping.dao.Plat_user">
+    update plat_user
+    set userpswd = #{userpswd,jdbcType=VARCHAR},
+      mibaoq = #{mibaoq,jdbcType=VARCHAR},
+      mibaoa = #{mibaoa,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      cert = #{cert,jdbcType=BIT},
+      ban = #{ban,jdbcType=BIT},
+      netid = #{netid,jdbcType=VARCHAR},
+      aid = #{aid,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+</mapper>
