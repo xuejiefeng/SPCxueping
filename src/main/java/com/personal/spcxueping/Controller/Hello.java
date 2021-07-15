@@ -16,7 +16,7 @@ public class Hello {
 
     @GetMapping("Hello")
     public String sayHello(){
-        String sql="SELECT * FROM plat_user";
+        String sql="SELECT * FROM plat_user;";
         String users;
         List<Map<String, Object>> list=null;
         list=jdbcTemplate.queryForList(sql);
